@@ -52,9 +52,9 @@ const App = () => {
         {step === 7 && <Result formData={formData} />}
       </div>
       <footer className="App-footer">
-        <p>&copy; 2024 Balance Nutrition. All rights reserved.</p>
-        <p>Need Assistance? Call us at +91 9820455544 / +91 9152419847</p>
-        <p><a href="https://www.balancenutrition.in" target="_blank" rel="noopener noreferrer">www.balancenutrition.in</a></p>
+        <p>&copy; 2024 Dorganics. All rights reserved.</p>
+        <p>Need Assistance? Call us at +91 XXXXXXXXXX / +91 XXXXXXXXXX</p>
+        <p><a href="https://dorganics.in/" target="_blank" rel="noopener noreferrer">www.dorganics.in</a></p>
       </footer>
     </div>
   );
