@@ -1,27 +1,26 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import emailjs from 'emailjs-com';
 
 const Result = ({ formData }) => {
   const emailSent = useRef(false);
 
   // Calculate the BMI and Health Score here
-  const heightInMeters = ((parseInt(formData.heightFeet) * 12) + parseInt(formData.heightInches)) * 0.0254;
-  const bmi = (formData.weightKg / (heightInMeters ** 2)).toFixed(2);
+  const heightInMeters = useMemo(() => ((parseInt(formData.heightFeet) * 12) + parseInt(formData.heightInches)) * 0.0254, [formData.heightFeet, formData.heightInches]);
+  const bmi = useMemo(() => (formData.weightKg / (heightInMeters ** 2)).toFixed(2), [formData.weightKg, heightInMeters]);
+  const idealWeight = useMemo(() => ((heightInMeters * heightInMeters) * 22).toFixed(1), [heightInMeters]);
+  const weightDifference = useMemo(() => (formData.weightKg - idealWeight).toFixed(1), [formData.weightKg, idealWeight]);
 
-  const idealWeight = ((heightInMeters * heightInMeters) * 22).toFixed(1);
-  const weightDifference = (formData.weightKg - idealWeight).toFixed(1);
-
-  const bmiCategory = () => {
+  const bmiCategory = useCallback(() => {
     if (bmi < 18.5) return 'Underweight';
     if (bmi >= 18.5 && bmi <= 24.99) return 'Normal';
     if (bmi >= 25 && bmi <= 29.99) return 'Overweight';
     return 'Obese';
-  };
+  }, [bmi]);
 
-  const healthScore = () => {
+  const healthScore = useCallback(() => {
     if (bmiCategory() === 'Normal') return 78; // This is an example. You can implement a more complex calculation
     return 50; // Example score for other categories
-  };
+  }, [bmiCategory]);
 
   const sendEmail = useCallback(() => {
     const emailParams = {
@@ -55,7 +54,7 @@ const Result = ({ formData }) => {
     .catch((error) => {
       console.log('FAILED...', error);
     });
-  }, [formData]);
+  }, [formData, weightDifference, idealWeight, bmi, bmiCategory, healthScore]);
 
   useEffect(() => {
     if (!emailSent.current) {
@@ -97,7 +96,6 @@ const Result = ({ formData }) => {
       </tbody>
     </table>
   );
-
 
   return (
     <div className="result-container">
