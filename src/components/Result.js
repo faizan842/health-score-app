@@ -43,10 +43,10 @@ const Result = ({ formData }) => {
     };
 
     emailjs.send(
-      'your_service_id',
-      'your_template_id',
+      'service_2rid0ww',
+      'template_o8s3ea8',
       emailParams,
-      'your_user_id'
+      'ugLt9UVtgf7U-55EW'
     )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
