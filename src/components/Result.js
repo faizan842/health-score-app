@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import emailjs from 'emailjs-com';
 
 const Result = ({ formData }) => {
@@ -23,14 +23,7 @@ const Result = ({ formData }) => {
     return 50; // Example score for other categories
   };
 
-  useEffect(() => {
-    if (!emailSent.current) {
-      sendEmail();
-      emailSent.current = true;
-    }
-  }, []);
-
-  const sendEmail = () => {
+  const sendEmail = useCallback(() => {
     const emailParams = {
       to_name: formData.name,
       to_email: formData.email,
@@ -44,17 +37,17 @@ const Result = ({ formData }) => {
         As per your inputs, your B.M.I is ${bmi} kg/m².
         As per your B.M.I, you fall in ${bmiCategory()} Category.
 
-        Your Dorganics Health Score:
-        Based on the above results, your ‘Dorganics - Health Score’ is ${healthScore()}.
+        Your BN Health Score:
+        Based on the above results, your ‘BN - Health Score’ is ${healthScore()}.
         VERY GOOD
       `,
     };
 
     emailjs.send(
-      'service_2rid0ww',
-      'template_o8s3ea8',
+      'your_service_id',
+      'your_template_id',
       emailParams,
-      'ugLt9UVtgf7U-55EW'
+      'your_user_id'
     )
     .then((response) => {
       console.log('SUCCESS!', response.status, response.text);
@@ -62,7 +55,14 @@ const Result = ({ formData }) => {
     .catch((error) => {
       console.log('FAILED...', error);
     });
-  };
+  }, [formData]);
+
+  useEffect(() => {
+    if (!emailSent.current) {
+      sendEmail();
+      emailSent.current = true;
+    }
+  }, [sendEmail]);
 
   const bmiClassTable = (
     <table>
@@ -97,6 +97,7 @@ const Result = ({ formData }) => {
       </tbody>
     </table>
   );
+
 
   return (
     <div className="result-container">
