@@ -12,34 +12,51 @@ const Step2 = ({ formData, setFormData, nextStep, prevStep }) => {
             <label>
               <input
                 type="radio"
-                value="oval"
-                checked={formData.bodyType === 'oval'}
+                value="TRIANGLE"
+                checked={formData.bodyType === 'TRIANGLE'}
                 onChange={(e) => setFormData({ ...formData, bodyType: e.target.value })}
               />
-              <img src="/images/oval.png" alt="Oval" />
+              <img src="/images/TRIANGLE.png" alt="Triangle" />
             </label>
             <label>
               <input
                 type="radio"
-                value="square"
-                checked={formData.bodyType === 'square'}
+                value="RECTANGLE"
+                checked={formData.bodyType === 'RECTANGLE'}
                 onChange={(e) => setFormData({ ...formData, bodyType: e.target.value })}
               />
-              <img src="/images/square.png" alt="Square" />
+              <img src="/images/RECTANGLE.png" alt="Rectangle" />
             </label>
             <label>
               <input
                 type="radio"
-                value="triangular"
-                checked={formData.bodyType === 'triangular'}
+                value="APPLE"
+                checked={formData.bodyType === 'APPLE'}
                 onChange={(e) => setFormData({ ...formData, bodyType: e.target.value })}
               />
-              <img src="/images/triangular.png" alt="Triangular" />
+              <img src="/images/APPLE.png" alt="Apple" />
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="HOURGLASS"
+                checked={formData.bodyType === 'HOURGLASS'}
+                onChange={(e) => setFormData({ ...formData, bodyType: e.target.value })}
+              />
+              <img src="/images/HOURGLASS.png" alt="Hourglass" />
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="PEAR"
+                checked={formData.bodyType === 'PEAR'}
+                onChange={(e) => setFormData({ ...formData, bodyType: e.target.value })}
+              />
+              <img src="/images/PEAR.png" alt="Pear" />
             </label>
           </div>
         </div>
 
-        <button type="button" onClick={prevStep}>Back</button>
         <button type="button" onClick={nextStep}>Next</button>
       </form>
     </div>

@@ -12,14 +12,30 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
-  padding: 20px;
+  padding: 180px;
   color: white;
   text-align: center;
+  margin-bottom: -250px;
+  position: relative;
+}
+
+#background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.main {
+  color: rgb(106, 48, 20);
 }
 
 .App-logo {
-  height: 40px;
+  height: 60px;
 }
 
 .App-content {
@@ -28,22 +44,29 @@ body {
 }
 
 .App-footer {
-  background-color: #282c34;
-  color: white;
+  background-color: white;
+  color: rgb(76, 85, 102);;
   text-align: center;
   padding: 10px;
 }
 
 .step-container {
-  background-color: white;
+  background-color: rgb(253, 249, 248);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
 .form-group {
   margin-bottom: 15px;
+  flex: 1;
+  margin-right: 30px;
 }
 
 .form-group label {
@@ -57,6 +80,12 @@ body {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.height-inputs {
+  display: flex;
+  gap: 10px;
+  width: 120%;
 }
 
 button {
@@ -76,48 +105,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.result-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.result-container table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.result-container table, .result-container th, .result-container td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.result-container th {
-  background-color: #f2f2f2;
-  text-align: left;
-}
-
-.result-container h2, .result-container h3, .result-container p {
-  margin-bottom: 15px;
-}
-
-.result-container ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.result-container ul li {
-  margin-bottom: 5px;
-}
-
-.result-container a {
-  color: #61dafb;
-  text-decoration: none;
-}
-
-.result-container a:hover {
-  text-decoration: underline;
+.error {
+  color: red;
+  margin-top: 10px;
 }
